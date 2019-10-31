@@ -1,1 +1,1 @@
-test123@test.fr, Riviere, Paul
+<b>Email</b> : test123@test.fr, <b>Nom</b> : Peut-être, <b>Prénom</b> : Oui

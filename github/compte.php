@@ -1,3 +1,4 @@
+<?php session_start();?>
 <head>
 <title><?php include('config.php'); echo htmlspecialchars($pageTitle);?></title>
     <!-- Bootstrap core CSS -->

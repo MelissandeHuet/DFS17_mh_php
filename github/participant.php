@@ -1,3 +1,6 @@
+<?php session_start();?>
+<!doctype html>
+<html lang="en">
 <head>
 <title><?php include('config.php'); echo htmlspecialchars($pageTitle);?></title>
     <!-- Bootstrap core CSS -->
@@ -7,5 +10,36 @@
 </head>
 
 <body>
-<h1>Welcome</h1>
+
+<div class="wrap col-lg-8 text-center"><a href="disconnect.php">Se déconnecter</a>
+<h1 class="pb-5">Welcome <?php echo htmlspecialchars($_SESSION["login"]);?></h1>
+
+<ul class="text-left">
+<h2 >Liste des participants :</h2>
+
+<?php 
+if ($login_valide == $_POST['login'] && $pwd_valide == $_POST['pwd']) 
+{
+    if ($handle = opendir('participants')) {
+        while (false !== ($entry = readdir($handle))) {
+            if ($entry != "." && $entry != "..") {
+                echo "<li>$entry\n</li>";
+            }
+        }
+        closedir($handle);
+    }
+}
+else 
+{
+    // Le visiteur n'a pas été reconnu comme étant membre de notre site. On utilise alors un petit javascript lui signalant ce fait
+    echo '<body onLoad="alert(\'Membre non reconnu...\')">';
+    // puis on le redirige vers la page d'accueil
+    header('Location:login.php');  
+    exit();  
+}
+?>
+
+</ul>
+</div>
 </body>
+</html>
